@@ -11,7 +11,7 @@
 #define CELL_SIZE 16
 #define SCRNW ((512 * 3) + 100)
 #define SRCHT 512
-#define FPS 1
+#define FPS 5
 
 /* Matric Size */
 #define WD_COLS 32
@@ -36,7 +36,7 @@ int main(void)
 {
   InitWindow(SCRNW, SRCHT, "Agent Simulation");
   SetTargetFPS(FPS);
-  pause = 0;
+  pause = 1;
 
   pthread_t thread_id; 
   pthread_create(&thread_id, NULL, handleKeyInput, NULL);
