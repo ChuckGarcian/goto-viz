@@ -58,8 +58,14 @@ obj/x64/Debug/graphics.o: ../src/graphics.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
  /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
  /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h \
- /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
- ../raylib-master/src/raylib.h \
+ /usr/include/x86_64-linux-gnu/bits/iscanonical.h /usr/include/unistd.h \
+ /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
+ /usr/include/x86_64-linux-gnu/bits/environments.h \
+ /usr/include/x86_64-linux-gnu/bits/confname.h \
+ /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
+ /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+ /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
+ /usr/include/linux/close_range.h ../raylib-master/src/raylib.h \
  /usr/lib/gcc/x86_64-linux-gnu/11/include/stdbool.h ../src/graphics.h
 /usr/include/stdc-predef.h:
 /usr/include/stdio.h:
@@ -128,6 +134,14 @@ obj/x64/Debug/graphics.o: ../src/graphics.c /usr/include/stdc-predef.h \
 /usr/include/x86_64-linux-gnu/bits/mathcalls.h:
 /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h:
 /usr/include/x86_64-linux-gnu/bits/iscanonical.h:
+/usr/include/unistd.h:
+/usr/include/x86_64-linux-gnu/bits/posix_opt.h:
+/usr/include/x86_64-linux-gnu/bits/environments.h:
+/usr/include/x86_64-linux-gnu/bits/confname.h:
+/usr/include/x86_64-linux-gnu/bits/getopt_posix.h:
+/usr/include/x86_64-linux-gnu/bits/getopt_core.h:
+/usr/include/x86_64-linux-gnu/bits/unistd_ext.h:
+/usr/include/linux/close_range.h:
 ../raylib-master/src/raylib.h:
 /usr/lib/gcc/x86_64-linux-gnu/11/include/stdbool.h:
 ../src/graphics.h:
