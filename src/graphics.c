@@ -36,7 +36,7 @@ int main(void)
 {
   InitWindow(SCRNW, SRCHT, "Agent Simulation");
   SetTargetFPS(FPS);
-  pause = 1;
+  pause = 0;
 
   pthread_t thread_id; 
   pthread_create(&thread_id, NULL, handleKeyInput, NULL);
