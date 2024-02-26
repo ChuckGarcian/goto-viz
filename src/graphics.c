@@ -10,16 +10,16 @@
 #include "raylib.h"
 #include "graphics.h"
 
-#define WD_COLS 64
-#define WD_ROWS 64
+#define WD_COLS 32
+#define WD_ROWS 32
 #define WD_K 32
 
 // #define CELL_SCALE 5
 #define CELL_SIZE 16
 
-#define SCRNW WD_COLS * CELL_SIZE
-#define SRCHT WD_ROWS * CELL_SIZE
-#define FPS 50
+#define SCRNW ((512 * 3) + 100)
+#define SRCHT 512
+#define FPS 1
 
 /* Agent data used in the agent client */
 struct agent
@@ -32,15 +32,31 @@ struct agent
 
 
 
-#define MR 1
-#define NR 1
+#define MR 2
+#define NR 2
 
-#define KC 16
-#define MC 4
-#define NC 4
+#define KC 4
+#define MC 8
+#define NC 8
 
-static void drawAgents(int x, int y);
-static void drawGrid (void);
+static void drawBlock(int col, int row, int posX, int posY, int scaleC, int scaleR, struct Color color);
+static void drawGrid (size_t posx , size_t posy,  struct Color color);
+
+
+void gemm () 
+{
+
+  for (int jr = 0; jr < NC; jr += NR) 
+  {
+    for (int ir = 0; ir < MC; ir += MR) 
+    
+    {
+      // for (int pr = 0; pr < KC; pr += 1)          
+      
+    }
+  }
+
+}
 
 int main (void)
 {
@@ -50,101 +66,58 @@ int main (void)
   SetTargetFPS(FPS);
   
   
-  
+
 for (int j = 0; j < WD_COLS; j = j + NC ) {
+  
+
   for (int p = 0; p < WD_K; p += KC) 
   {
     for (int i = 0; i < WD_ROWS; i += MC)  
     {
-      printf ("j=%d\n", j);
-      for (int jr = 0; jr < NC; jr += NR) 
-      {
-        for (int ir = 0; ir < MC; ir += MR) 
-        
-        {
-          
-          // for (int pr = 0; pr < KC; pr += 1)          
-          BeginDrawing();
-          ClearBackground(RAYWHITE);
-          drawGrid ();
-          drawAgents(j + jr, i + ir );
-          EndDrawing();
-          
-        }
-      }
+      BeginDrawing();         
+      ClearBackground(RAYWHITE); //GRAY
+
+      
+      drawBlock (j, 0, 0, 0, NC, 32, GRAY);
+      drawBlock (j, i, 0, 0, NC, MC, BLACK);
+      drawGrid (0, 0, BLACK);
+
+      drawBlock (p, 0, 34, 0, KC, 32, SKYBLUE);
+      drawBlock (p, i, 34, 0, KC, MC, DARKBLUE);
+      drawGrid (34, 0, DARKBLUE); // SKYBLUE
+      
+      drawBlock (j, 0, 68, 0, NC, 32, GREEN);
+      drawBlock (j, p, 68, 0, NC, KC, DARKGREEN);
+      drawGrid (68, 0, DARKGREEN); 
+      
+      EndDrawing();          
     }
   }
+  
 }
-printf ("Done!\n");
+
   
-
-
-
-  // // while (!WindowShouldClose())
-  // {
-  
-  //   // Draw
-  //   BeginDrawing();
-  //   ClearBackground(RAYWHITE);
-  //   drawGrid ();
-  //   // drawAgents(agents, CNT);
-  //   EndDrawing();
-  // }
 
   CloseWindow();
   return 0;
 }
 
-/*
- * Populates emtpy array 'AGENTS' with randomly initilized agent objects 
- */    
-// static void initAgents (struct agent *agents, size_t cnt)
-// {
-//   while (cnt--)
-//   {
-//     struct agent *agt = &agents[cnt];  
-//     agt->my_base.posX = random_range (WD_COLS);
-//     agt->my_base.posY = random_range (WD_ROWS);
-    
-//     agt->perceptual_radius = 20;
-//     agt->action_radius = 2;
-//     agt->updateAgent = &agtClientUpdate;
-//   }
-// }
-
-/* 
- * Update the state of the entire system by a timestep
- */
-// static void updateSystemState(struct agent *agents, size_t cnt)
-// {
-//   while (cnt--)
-//   {
-//     struct agent *agt = &agents[cnt];
-//     agt->updateAgent (agt);
-//   }
-// }
-
-/*
- * Draw agents array 'AGENTS' of count 'CNT' to winow
-//  */
-static void drawAgents(int x, int y)
+static void drawBlock(int col, int row, int posX, int posY, int scaleC, int scaleR, struct Color color)
 {
     int size = CELL_SIZE; 
-    DrawRectangle(x * CELL_SIZE,y * CELL_SIZE, size, size, BLACK);
+  
+    DrawRectangle((col + posX) * CELL_SIZE,(row + posY) * CELL_SIZE, scaleC * CELL_SIZE, scaleR * CELL_SIZE, color);
   
 }
 
-/*
- * Draw A grid  
-*/
-static void drawGrid (void)
+static void drawGrid (size_t posx , size_t posy,  struct Color color)
 {
 
   for (int col = 0; col < WD_COLS; col++)
   {
     for (int row = 0; row < WD_ROWS; row++)
     {
-     DrawRectangleLines (col * CELL_SIZE, row * CELL_SIZE,  CELL_SIZE, CELL_SIZE, BLACK);
+     DrawRectangleLines ((posx + col) * CELL_SIZE, (posy + row) * CELL_SIZE,  CELL_SIZE, CELL_SIZE, color);
     }
   }
 }
